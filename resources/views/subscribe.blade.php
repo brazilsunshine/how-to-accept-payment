@@ -33,7 +33,6 @@
                                     name="plan"
                                     id="standard"
                                     value="price_1MjN54KfQxRkIXlXaZrg7KO8"
-                                    checked
                                 >
                                 <label for="standard">Standard - $20 / Month</label>
                             </div>

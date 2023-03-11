@@ -16,9 +16,17 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('subscribe')" :active="request()->routeIs('subscribe')">
-                        Subscribe
-                    </x-nav-link>
+                    @if (!auth()->user()->subscribed('cashier'))
+                        <x-nav-link :href="route('subscribe')" :active="request()->routeIs('subscribe')">
+                            Subscribe
+                        </x-nav-link>
+                    @endif
+
+                    @if (auth()->user()->subscribed('cashier'))
+                        <x-nav-link :href="route('members')" :active="request()->routeIs('members')">
+                            Members
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

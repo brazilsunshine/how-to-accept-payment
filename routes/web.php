@@ -30,19 +30,28 @@ Route::middleware('auth')->group(function () {
 });
 
 /**
- * Subscribe
+ * SUBSCRIBE
  */
-Route::middleware(['auth:sanctum', 'verified'])->get('/subscribe', function () {
+Route::middleware(['auth:sanctum', 'verified', 'nonPayingCustomer'])->get('/subscribe', function () {
     return view('/subscribe', [
         'intent' => auth()->user()->createSetupIntent(),
     ]);
 })->name('subscribe');
 
-Route::middleware(['auth:sanctum', 'verified'])->post('/subscribe', function (Request $request) {
+Route::middleware(['auth:sanctum', 'verified', 'nonPayingCustomer'])->post('/subscribe', function (Request $request) {
     //dd($request->all());
     auth()->user()->newSubscription('cashier', $request->plan)->create($request->paymentMethod);
 
     return redirect('/dashboard');
 })->name('subscribe.post');
+
+/**
+ * MEMBERS
+ */
+Route::middleware(['auth:sanctum', 'verified', 'payingCustomer'])->get('/members', function () {
+    return view('members');
+})->name('members');
+
+
 
 require __DIR__.'/auth.php';
