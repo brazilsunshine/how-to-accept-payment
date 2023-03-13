@@ -46,11 +46,14 @@
         <script src="https://js.stripe.com/v3/"></script>
 
         <script>
-            // Create a Stripe client.
+            /**
+             * Create a Stripe client.
+             */
             const stripe = Stripe("pk_test_51MWf28KfQxRkIXlXqkN0uipSjX7SdJ0gA4bwe23NJAfTwnwfVTNMLt0H3qzCV9oI3q240IFoxusnwKAbzDlLT0q100a6qWZDQg");
 
-
-            // Create an instance of Elements.
+            /**
+             * Create an instance of Elements.
+             */
             var elements = stripe.elements();
 
             // Custom styling can be passed to options when creating an Element.
@@ -70,12 +73,12 @@
                 }
             };
 
-            // Create an instance of the card Element.
+            /**
+             *  Create an instance of the card Element.
+             */
             var card = elements.create('card', {style: style});
-
             // Add an instance of the card Element into the `card-element` <div>.
             card.mount('#card-element');
-
             // Handle real-time validation errors from the card Element.
             card.on('change', function(event) {
                 var displayError = document.getElementById('card-errors');
@@ -86,7 +89,9 @@
                 }
             });
 
-            // Handle form submission.
+            /**
+             * Handle the form
+             */
             var form = document.getElementById('payment-form');
             var cardHolderName = document.getElementById('cardholder-name');
             form.addEventListener('submit', async function(event) {
@@ -106,19 +111,11 @@
                     // console.log({card});
                     stripeTokenHandler(paymentMethod);
                 }
-                // stripe.createToken(card).then(function(result) {
-                //     if (result.error) {
-                //     // Inform the user if there was an error.
-                //     var errorElement = document.getElementById('card-errors');
-                //     errorElement.textContent = result.error.message;
-                //     } else {
-                //     // Send the token to your server.
-                //     stripeTokenHandler(result.token);
-                //     }
-                // });
             });
 
-            // Submit the form with the token ID.
+            /**
+             * Submit the form with the token ID.
+             */
             function stripeTokenHandler(paymentMethod) {
                 // Insert the token ID into the form so it gets submitted to the server
                 var form = document.getElementById('payment-form');
