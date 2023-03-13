@@ -31,6 +31,10 @@
                     <x-nav-link :href="route('charge')" :active="request()->routeIs('charge')">
                         Single Charge
                     </x-nav-link>
+
+                    <x-nav-link :href="route('invoices')" :active="request()->routeIs('invoices')">
+                        Invoices
+                    </x-nav-link>
                 </div>
             </div>
 
