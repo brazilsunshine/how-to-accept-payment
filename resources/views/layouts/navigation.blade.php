@@ -27,6 +27,10 @@
                             Members
                         </x-nav-link>
                     @endif
+
+                    <x-nav-link :href="route('charge')" :active="request()->routeIs('charge')">
+                        Single Charge
+                    </x-nav-link>
                 </div>
             </div>
 

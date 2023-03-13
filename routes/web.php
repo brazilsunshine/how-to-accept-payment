@@ -53,5 +53,19 @@ Route::middleware(['auth:sanctum', 'verified', 'payingCustomer'])->get('/members
 })->name('members');
 
 
+/**
+ * SINGLE CHARGE
+ */
+Route::middleware(['auth:sanctum', 'verified'])->get('/charge', function () {
+    return view('charge');
+})->name('charge');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/charge', function (Request $request) {
+     //dd($request->all());
+    auth()->user()->charge(1000, $request->paymentMethod);
+
+    return redirect('/dashboard');
+})->name('charge.post');
+
 
 require __DIR__.'/auth.php';
